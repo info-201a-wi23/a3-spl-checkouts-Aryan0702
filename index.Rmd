@@ -5,45 +5,21 @@ output: html_document
 
 ### Introduction
 
-An introduction of the data and a description of the trends/books/items you are choosing to analyze (and why!)
+This data describes the workings of the Seattle Public Library. This dataset includes a monthly count of Seattle Public Library checkouts by title for physical and electronic items. The dataset begins with checkouts that occurred in April 2005 and goes all the way till the beginning of 2023. 
+</br>
+</br> I have chosen to analyse data related to Rick Riordan's books. I chose to analyse Riordan's publications mainly because of the diverse audience that his books apply to and his year round release dates. This would mean that audience would not be geographically limited meaning that checkout trends would remain similar in all libraries and if patterns were to exist around release dates, they would become apparent in my graphs. Moreover, him being a very famous author, I was able to find substantial data to work with while creating my graphs. Moreover, he also happens to be one of my fabourite authors and I reallyenjoy reading his work.
 
 ### Summary Information
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
+```{r, echo = FALSE, warning = FALSE, message=FALSE, code = readLines("summary.R")}
+```
 
-These will likely be calculated using your DPLYR skills, answering questions such as:
-
-- What is the average number of checkouts for each item?
-- What is the month or year with the most/least checkouts for a book that you're interested in?
-- What is the month or year with the most/least checkouts for ebooks?
-- How has the number of print book checkouts changed over time?
-
-Feel free to calculate and report values that you find relevant.
+This dataset contains `r no_of_rows` rows and `r no_of_cols` columns. The most popular book in the Seattle Public Library is `r most_popular_book`. The most number of books were checked out in `r most_checkouts_year`. However, more specifically, Rick Riordan's most checked out title is `r most_popular_rr_book`. The most popular format in which his publications are consumed is `r most_popular_format`. On an average, the most number of checkouts occur in the `r month_with_highest_avg_checkouts`st month of the year.
 
 ### The Dataset
 
-- Who collected/published the data?  
-- What are the parameters of the data (dates, number of checkouts, kinds of books, etc.)?
-- How was the data collected or generated?  
-- Why was the data collected?  
-- What, if any, ethical questions do you need to consider when working with this data?  
-- What are possible limitations or problems with this data?   (at least 200 words)
-
-
-### First Trends Over Time Chart
-
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
-
-The first chart that you will create and include will show the trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
+This data was collected by The Seattle Public Library. The data was collected over a span of almost 18 years. It ranges from April 2005 till January 2023.
+This data was generated with the help of electronic checkout means after keeping track of all titles available at a branch electronically. This dataset contains `r no_of_rows` rows and `r no_of_cols` columns. This data accounts for `r no_of_checkouts` checkouts. This data was collected to improve public understanding of City operations and other information concerning their communities. It also serves to generate economic opportunities for individuals and companies that benefit from the knowledge created by Open Data. Moreover, the data also serves as a means to measure performance of City employees and empowers them to be more effective, better coordinated internally, and able be to identify opportunities to better serve the public. While working with this data, one of the main ethical questions to keep in mind was whether this data collection was authorized by the end users of the titles. However, since this data set only keeps track of the books checked out and not the people checking them out nor their purpose of checkout, this seemed ethical to use. This data has many issues in terms of consistency. Publication years and author names were not recorded in a single format. This required some amount of data cleaning to bring the existing data into usable form.
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE}
 
@@ -69,40 +45,23 @@ rick_riordan_df3 <- rick_riordan_df3 %>% filter(CheckoutYear >= 2020)
 
 ```
 
-Here's an example of how to run an R script inside an RMarkdown file:
+### First Trends Over Time Chart
 
-``````{r, echo = FALSE, warning = FALSE, code = readLines("Chart_1.R")}
+This first chart shows the number of checkouts for each type of medium in which the publication from each year was checked out. This chart is useful to understand how different formats picked up over the years. From the charts, it can be seen that digital formats combined were more popular the print and all three had more or less similar checkout patterns. Moreover, the first publication year to have an e-book format was 2011 which was also the year for highest number of checkouts for e-books.
+
+``````{r, echo = FALSE, warning = FALSE, message=FALSE, code = readLines("Chart_1.R")}
 ``````
 
 ### Second Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
-
-The second chart that you will create and include will show another trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
+This chart shows the total number of checkouts for each month summed over all the years. The line plot shows the checkout trends for each publication year over the 12 months. Rick Riordan's books are usually released over the summer and towards the ends of the year. Due to this one can expect the number of checkouts to be higher during summer and the end of the year through the beginning of the next year. These expectations are confirmed by this graph that clearly shows a spike in checkout rates during summer months and the beginning and end of the years. Moreover, This chart also visualizes the most popular publication year which was 2016.
 
 ``````{r, echo = FALSE, code = readLines("Chart_2.R")}
 ``````
 
 ### Your Choice
 
-The last chart is up to you. It could be a line plot, scatter plot, histogram, bar plot, stacked bar plot, and more. Here are some requirements to help guide your design:
-
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
-
-Here's an example of how to run an R script inside an RMarkdown file:
+This chart shows the checkout trends during the pandemic (post 2020). The stacked bar chart represents data in terms of checkouts and publication years and segregates this data based on the format of the publication. Interestingly, the majority of the checkouts of the more popular titles were in digital form. This implies that even though actual foot fall in the libraries may have decreased, checkouts continued in digital forms. Moreover, the more recent titles were majorly checked out in digital form irrespective of their popularity. This also implies that the print versions were on a decline over the publication years.
 
 ```{r, echo = FALSE, code = readLines("Chart_3.R")}
 ```
